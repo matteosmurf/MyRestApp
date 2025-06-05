@@ -21,21 +21,23 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        val users = arrayOf("User1", "User2", "User3")
+        val passwords = arrayOf("psw1", "psw2", "psw3")
+
         val username = findViewById<EditText>(R.id.editText_username)
         val password = findViewById<EditText>(R.id.editText_password)
         val btnLogin = findViewById<Button>(R.id.button_login)
 
-        val usernameString = username.text.toString()
-        val passwordString = password.text.toString()
+
 
         btnLogin.setOnClickListener{
-            if(usernameString.isEmpty() || passwordString.isEmpty()){
-                Toast.makeText(this, "Inserisci username e password", Toast.LENGTH_SHORT).show()
-            } else if (passwordString.length < 8){
-                Toast.makeText(this, "La password deve essere almeno 8 caratteri", Toast.LENGTH_SHORT).show()
-            } else {
-                val myIntent = Intent(this, MenuActivity::class.java)
-                startActivity(myIntent)
+            val usernameString = username.text.toString()
+            val passwordString = password.text.toString()
+            for(i in users.indices) {
+                if(users[i] == usernameString && passwords[i] == passwordString){
+                    val myIntent = Intent(this, MenuActivity::class.java)
+                    startActivity(myIntent)
+                }
             }
         }
     }
